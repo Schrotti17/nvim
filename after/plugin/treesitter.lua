@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "vimdoc", "javascript", "python", "kotlin", "cpp", "java", "typescript", "c", "lua", "rust" },
+  ensure_installed = { "vimdoc", "javascript", "python", "kotlin", "cpp", "java", "typescript", "c", "lua"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -18,5 +18,8 @@ require'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
+  },
+  dependencies = {
+      "nvim-tree/nvim-web-devicons",
   },
 }

@@ -39,6 +39,11 @@ require('lazy').setup({
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
   {'neovim/nvim-lspconfig'},
 
+  -- Lualine
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
   -- Autocompletion
   {'hrsh7th/nvim-cmp'},
   {'saadparwaiz1/cmp_luasnip'},
@@ -126,6 +131,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-tree/nvim-web-devicons',
     },
     build = ':TSUpdate',
   },
