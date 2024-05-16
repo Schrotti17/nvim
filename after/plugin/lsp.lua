@@ -2,15 +2,37 @@ local lsp = require("lsp-zero")
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer'},
   handlers = {
     lsp.default_setup,
     lua_ls = function()
       local lua_opts = lsp.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
     end,
+  },
+  ensure_installed = {
+    'pyright',
+ --   'debugpy',
+  --  'black',
+    'ruff',
+    'lua_ls',
+--    'mypy',
+  },
+ })
+require("mason-tool-installer").setup {
+  ensure_installer = {
+
+  },
+  auto_update = false,
+  run_on_start = true,
+  -- Disable integration with other Mason plugins. This removes
+  -- the ability to to use the alternative names of packages provided
+  -- by these plugins but disables them from immediately becoming loaded
+  integrations = {
+    ["mason-lspconfig"] = true,
+    ["mason-null-ls"] = true,
+    ["mason-nvim-dap"] = true,
   }
-})
+}
 
 local cmp = require('cmp')
 require("luasnip.loaders.from_vscode").lazy_load()

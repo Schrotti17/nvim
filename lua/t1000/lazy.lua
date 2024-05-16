@@ -27,15 +27,9 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   -- LSP 
-  {
-    'williamboman/mason.nvim',
-    opts = {
-      ensure_installed = {
-        "pyright",
-      },
-    }
-  },
+  {'williamboman/mason.nvim'},
   {'williamboman/mason-lspconfig.nvim'},
+  {'WhoIsSethDaniel/mason-tool-installer.nvim'},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
   {'neovim/nvim-lspconfig'},
 
@@ -80,7 +74,7 @@ require('lazy').setup({
         local gs = package.loaded.gitsigns
         vim.keymap.set({ 'n', 'v' }, ']c', function()
 
-  -- SideBar Navigation
+          -- SideBar Navigation
           if vim.wo.diff then
             return ']c'
           end
@@ -135,6 +129,42 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  -- Debugging
+  {
+    'mfussenegger/nvim-dap',
+  },
+  {
+    'rcarriga/nvim-dap-ui',
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+    config = function ()
+      local dap, dapui = require("dap"), require("dapui")
+      dapui.setup()
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
+    end
+  },
+  {
+    'mfussenegger/nvim-dap-python',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'rcarriga/nvim-dap-ui'
+    },
+    config = function (_, opts)
+      local path =  "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+      require("dapui").setup()
+    end
+  },
 
   -- Commenting
   {
@@ -142,6 +172,16 @@ require('lazy').setup({
     lazy = false,
   },
 
+  -- Noice 
+  {
+  "folke/noice.nvim",
+  event = "VeryLazy",
+  opts = {},
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    }
+  },
+      
   -- SideBar Navigation
   {
     "nvim-tree/nvim-tree.lua",
