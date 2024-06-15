@@ -30,7 +30,7 @@ require("mason-tool-installer").setup {
   integrations = {
     ["mason-lspconfig"] = true,
     ["mason-null-ls"] = true,
-    ["mason-nvim-dap"] = true,
+    --["mason-nvim-dap"] = true,
   }
 }
 

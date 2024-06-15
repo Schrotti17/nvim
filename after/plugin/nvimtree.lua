@@ -25,6 +25,8 @@ tree.setup({
       enable = true,
     },
     group_empty = true
+
+
   },
   filters = { dotfiles = true },
   git = {
