@@ -21,4 +21,4 @@ vim.keymap.set('n', '<leader>x', ":bd<cr>")
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y"]])
 
 
-vim.keymap.set("n", "<leader>tt", ":silent !black %<cr>")
+vim.keymap.set("n", "<leader>fmp", ":silent !black %<cr>")
