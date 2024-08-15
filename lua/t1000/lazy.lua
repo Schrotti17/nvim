@@ -13,7 +13,13 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec="t1000.plugins",
-  change_detection = { notify = false }
+  change_detection = { notify = false },
+  checker = {
+		-- Automatically check for package updates
+		enabled = true,
+		-- Don't spam us with notification every time there is an update available
+		notify = false,
+	},
 })
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
@@ -81,19 +87,6 @@ require('lazy').setup({
     opts = {},
   },
 
-  -- Commenting
-  {
-    'numToStr/Comment.nvim',
-    lazy = false,
-  },
-
-  -- Noice comandline
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-    -- add any options here
-  },
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     "MunifTanjim/nui.nvim",
