@@ -8,7 +8,7 @@ return {
         -- Call the autopairs setup function to configure how we want autopairs to work
         require('nvim-autopairs').setup({})
 
-         -- Get access to auto pairs completion and cmp plugins
+        -- Get access to auto pairs completion and cmp plugins
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
 

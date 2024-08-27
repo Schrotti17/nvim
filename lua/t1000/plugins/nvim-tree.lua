@@ -10,24 +10,25 @@ return {
         keymap.set('n', '?', api.tree.toggle_help)
         keymap.set('n', '<leader>t', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })
         keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { desc = 'Collapse file explorer' })
-        keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer'})
-        
+        keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer' })
+
         require("nvim-tree").setup({
-            sort = {sorter = "case_sensitive"},
+            sort = { sorter = "case_sensitive" },
             view = {
                 width = 32,
                 relativenumber = true
             },
             renderer = {
                 indent_markers = {
-                  enable = true,
+                    enable = true,
                 },
                 group_empty = true
-              },
-              filters = { dotfiles = true },
-              git = {
+            },
+            filters = { dotfiles = true },
+            git = {
                 ignore = false,
-              },
+            },
         })
     end
 }
+

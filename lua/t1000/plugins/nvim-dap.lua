@@ -25,7 +25,7 @@ return {
         vim.keymap.set("n", "<leader>ds", dap.continue, { desc = "[D]ebug [S]tart" })
 
         -- set a vim motion to close the debugging ui
-        vim.keymap.set("n", "<leader>dc", dapui.close, {desc = "[D]ebug [C]lose"})
+        vim.keymap.set("n", "<leader>dc", dapui.close, { desc = "[D]ebug [C]lose" })
 
         vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
 
