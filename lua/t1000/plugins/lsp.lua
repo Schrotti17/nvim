@@ -26,7 +26,7 @@ return {
                     "lua_ls",
 
                     -- DAP
-                    "debugpy",
+                    "debugpy", "java-debug-adapter", "java-test",
 
                     -- Linter
                     "ruff",
@@ -42,42 +42,9 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         config = function()
-            -- ensure that we have lua language server, typescript launguage server, java language server, and java test language server are installed
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    -- "lua_ls",
-                    -- "pyright",
-                    -- "tsserver",
-                    -- "jdtls",
-                    -- "html",
-                    -- "emmet_ls",
-                    -- "cssls"
-                    -- "debugpy",
-                    -- "java-test",
-                    -- "java-debug-adapter",
-                    -- "google-java-format",
-                    -- "black",
-                    -- "isort"
-                    -- "mypy",
-                },
-            })
+            require("mason-lspconfig").setup({})
         end
     },
-
-    -- {
-    --     "rshkarin/mason-nvim-lint",
-    --     dependencies = {
-    --         "mfussenegger/nvim-lint"
-    --     },
-    --     config = function()
-    --         require('mason-nvim-lint').setup({
-    --             ensure_installed = {
-    --                 "ruff"
-    --             },
-    --             automatic_installation = false
-    --         })
-    --     end
-    -- },
 
     {
         "neovim/nvim-lspconfig",
@@ -187,12 +154,5 @@ return {
                 ensure_installed = { "java-debug-adapter", "java-test" }
             })
         end
-    },
-    -- utility plugin for configuring the java language server for us
-    {
-        "mfussenegger/nvim-jdtls",
-        dependencies = {
-            "mfussenegger/nvim-dap",
-        }
     },
 }
