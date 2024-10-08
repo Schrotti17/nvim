@@ -1,3 +1,1 @@
 # My Neovim configuration
-
-Test

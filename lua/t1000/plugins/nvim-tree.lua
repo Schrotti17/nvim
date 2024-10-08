@@ -6,11 +6,8 @@ return {
     config = function()
         local keymap = vim.keymap
         local api = require("nvim-tree.api")
-        keymap.set('n', '<leader>üü', api.tree.change_root_to_parent)
         keymap.set('n', '?', api.tree.toggle_help)
-        keymap.set('n', '<leader>t', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })
-        keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { desc = 'Collapse file explorer' })
-        keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer' })
+        keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<CR>', { desc = 'Toggle file explorer' })
 
         require("nvim-tree").setup({
             sort = { sorter = "case_sensitive" },

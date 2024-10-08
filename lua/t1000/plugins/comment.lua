@@ -5,7 +5,5 @@ return {
         vim.keymap.set("n", "<leader>#", "<Plug>(comment_toggle_linewise_current)", { desc = "Comment Line" })
         -- Set a vim motion to <Space> + / to comment all the lines selected in visual mode
         vim.keymap.set("v", "<leader>#", "<Plug>(comment_toggle_linewise_visual)", { desc = "Comment Selected" })
-        require('Comment').setup()
     end
 }
-

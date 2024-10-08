@@ -25,8 +25,8 @@ return {
                     "html", "emmet_ls", "cssls",
                     "lua_ls",
 
-                    -- DAP
-                    "debugpy", "java-debug-adapter", "java-test",
+                    -- Debugger
+                    "java-debug-adapter", "java-test", "debugpy",
 
                     -- Linter
                     "ruff",
@@ -143,16 +143,6 @@ return {
             vim.keymap.set("n", "<leader>cR", vim.lsp.buf.rename, { desc = "[C]ode [R]ename" })
             -- Set a vim motion for <Space> + c + <Shift>D to go to where the code/object was declared in the project (class file)
             vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "[C]ode Goto [D]eclaration" })
-        end
-    },
-    -- mason nvim dap utilizes mason to automatically ensure debug adapters you want installed are installed, mason-lspconfig will not automatically install debug adapters for us
-    {
-        "jay-babu/mason-nvim-dap.nvim",
-        config = function()
-            -- ensure the java debug adapter is installed
-            require("mason-nvim-dap").setup({
-                ensure_installed = { "java-debug-adapter", "java-test" }
-            })
         end
     },
 }
