@@ -7,5 +7,6 @@ return {
     config = function()
         vim.keymap.set('n', '<C-d>', ":DBUI<cr>")
         vim.keymap.set('n', '<C-a>', ":DBUIAddConnection<cr>")
+        vim.keymap.set('n', '<C-x>', ":DBUIToggle<cr>")
     end
 }

@@ -23,7 +23,7 @@ return {
                     -- LSP
                     "pyright", "jdtls", "tsserver",
                     "html", "emmet_ls", "cssls",
-                    "lua_ls",
+                    "lua_ls", "clangd",
 
                     -- Debugger
                     "java-debug-adapter", "java-test", "debugpy",
@@ -32,7 +32,7 @@ return {
                     "ruff",
 
                     -- Formatter
-                    "isort",
+                    "isort", "clang-format"
                 }
             })
         end
@@ -81,40 +81,26 @@ return {
                     ['<C-Space>'] = cmp.mapping.complete(),
                 }),
             })
-            -- setup the python language server
-            lspconfig.pyright.setup({
-                filetypes = { "python" },
-                on_init = function(client)
+
+            -- setup python3 language server
+            local util = require("lspconfig/util")
+            local path = util.path
+            lspconfig.pyright.setup {
+                capabilities = capabilities,
+                before_init = function(_, config)
                     local cwd = vim.fn.getcwd()
-                    local venv_path = find_venv(cwd)
-                    if venv_path then
-                        print("Venv folder found: " .. venv_path)
-                        vim.env.VIRTUAL_ENV = venv_path
-                        vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
-
-                        -- Set the flag to true
-                        pyright_restarted = true
-
-                        vim.schedule(function()
-                            vim.cmd('LspRestart pyright')
-                            print("Pyright restarted with new venv settings")
-                        end)
-                    else
-                        print("No venv folder found in or one level below current directory: " .. cwd)
-                    end
-                end
-            })
-
-            vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-                pattern = { "*.py" },
-                callback = function()
-                    vim.cmd('silent !black --quiet %')
+                    local default_venv_path = path.join(cwd, "env/bin/python3")
+                    config.settings.python.pythonPath = default_venv_path
                 end,
-            })
+            }
+
+            -- setup the c++ language server
+            lspconfig.clangd.setup {}
+
             -- setup the lua language server
-            lspconfig.lua_ls.setup({
-                capabilities = require("cmp_nvim_lsp").default_capabilities(),
-            })
+            lspconfig.lua_ls.setup {}
+
+
             vim.diagnostic.config({
                 -- update_in_insert = true,
                 float = {
